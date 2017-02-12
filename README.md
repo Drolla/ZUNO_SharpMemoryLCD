@@ -17,6 +17,8 @@ The library has the following limitations and constraints:
   * The library has only been tested for a display size of 96x96 pixels
   * An important amount of data space is required for the display buffer to store the full display content (1152 bytes for a 96x96 dot display)
 
+![Examples](https://github.com/Drolla/ZUNO_SharpMemoryLCD/wiki/IMG_All.jpg)
+
 
 ## Table of Contents
 
