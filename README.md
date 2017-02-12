@@ -21,25 +21,25 @@ The library has the following limitations and constraints:
 ## Table of Contents
 
 * [Getting started](#getting-started)
-* [API - LCD display setup](#API---LCD-display-setup)
-    * [Constructor:-SharpMemoryLCD::SharpMemoryLCD](#Constructor:-SharpMemoryLCD::SharpMemoryLCD)
-    * [Method: SharpMemoryLCD::begin](#Method:-SharpMemoryLCD::begin)
-* [API - Display updates and refreshes](#API---Display-updates-and-refreshes)
-    * [Method: SharpMemoryLCD::update](#Method:-SharpMemoryLCD::update)
-    * [Method: SharpMemoryLCD::refresh](#Method:-SharpMemoryLCD::refresh)
-* [API - Display buffer updates: Clear, line, rect, circle](#API---Display-buffer-updates:-Clear,-line,-rect,-circle)
-    * [Method: SharpMemoryLCD::clear](#Method:-SharpMemoryLCD::clear)
-    * [Method: SharpMemoryLCD::setPixel](#Method:-SharpMemoryLCD::setPixel)
-    * [Method: SharpMemoryLCD::line](#Method:-SharpMemoryLCD::line)
-    * [Method: SharpMemoryLCD::rect](#Method:-SharpMemoryLCD::rect)
-    * [Method: SharpMemoryLCD::circle](#Method:-SharpMemoryLCD::circle)
-* [API - Display buffer updates: Write methods](#API---Display-buffer-updates:-Write-methods)
-    * [Method: SharpMemoryLCD::writeChr(S,M,L)](#Method:-SharpMemoryLCD::writeChr(S,M,L))
-    * [Method: SharpMemoryLCD::write(S,M,L)](#Method:-SharpMemoryLCD::write(S,M,L))
-    * [Method: SharpMemoryLCD::writeFit](#Method:-SharpMemoryLCD::writeFit)
-* [API - Auxiliary functions  ](#API---Auxiliary-functions--)
-    * [Function: int2Str](#Function:-int2Str)
-* [Release history](#Release-history)
+* [API - LCD display setup](#api---lcd-display-setup)
+    * [Constructor:-SharpMemoryLCD::SharpMemoryLCD](#constructor-sharpmemorylcdsharpmemorylcd)
+    * [Method: SharpMemoryLCD::begin](#method-sharpmemorylcdbegin)
+* [API - Display updates and refreshes](#api---display-updates-and-refreshes)
+    * [Method: SharpMemoryLCD::update](#method-sharpmemorylcdupdate)
+    * [Method: SharpMemoryLCD::refresh](#method-sharpmemorylcdrefresh)
+* [API - Display buffer updates: Clear, line, rect, circle](#api---display-buffer-updates-clear-line-rect-circle)
+    * [Method: SharpMemoryLCD::clear](#method-sharpmemorylcdclear)
+    * [Method: SharpMemoryLCD::setPixel](#method-sharpmemorylcdsetpixel)
+    * [Method: SharpMemoryLCD::line](#method-sharpmemorylcdline)
+    * [Method: SharpMemoryLCD::rect](#method-sharpmemorylcdrect)
+    * [Method: SharpMemoryLCD::circle](#method-sharpmemorylcdcircle)
+* [API - Display buffer updates: Write methods](#api---display-buffer-updates-write-methods)
+    * [Method: SharpMemoryLCD::writeChr(S,M,L)](#method-sharpmemorylcdwritechr(s,m,l))
+    * [Method: SharpMemoryLCD::write(S,M,L)](#method-sharpmemorylcdwrite(s,m,l))
+    * [Method: SharpMemoryLCD::writeFit](#method-sharpmemorylcdwritefit)
+* [API - Auxiliary functions](#api---auxiliary-functions)
+    * [Function: int2Str](#function-int2str)
+* [Release history](#release-history)
 * [License](License)
 
 
@@ -63,13 +63,13 @@ Add the Sharp Memory LCD Display Library to the Z-Uno project. The library .h an
 
 Include the LCD display library in the following way in your Z-Uno application:
 
-  1) Include the LCD display library header file (.h)
-  2) Create a sharpMemoryLCD class instance
-  3) Call the method _begin_ in the setup function
-  4) Start each display update by clearing the display buffer with the method _clear_.
-  5) Use the different drawing and writing functions to update the display data buffer. This will not yet update the physical display.
-  6) Update the physical display with the method _update_.
-  7) Ensure that the display is refreshed at least once every second by calling the method _refresh_ (software VCOM clock).
+  1. Include the LCD display library header file (.h)
+  2. Create a sharpMemoryLCD class instance
+  3. Call the method _begin_ in the setup function
+  4. Start each display update by clearing the display buffer with the method _clear_.
+  5. Use the different drawing and writing functions to update the display data buffer. This will not yet update the physical display.
+  6. Update the physical display with the method _update_.
+  7. Ensure that the display is refreshed at least once every second by calling the method _refresh_ (software VCOM clock).
 
   ```C++
   /* 1 */  #include "SharpMemoryLCD.h"
@@ -115,11 +115,14 @@ The display size and the orientation are specified on the beginning of the .h in
 The .h include file defines in function of the display size a specific data type for coordinates as well as a constant for not applicable/available positions.
 
 * Small displays (heights and widths smaller than 256 pixels):
-    ```C++
-    typedef byte xy_t;
-    #define xy_tNA 255
-    ```
+
+   ```C++
+   typedef byte xy_t;
+   #define xy_tNA 255
+   ```
+
 * Bigger displays (heights or widths equal or above 256 pixels):
+
     ```C++
     typedef unsigned int xy_t;
 	 #define xy_tNA 0xffff
@@ -133,13 +136,13 @@ The following methods create a LCD display class instance and initialize it.
   ```
   Creates an LCD display class instance. Only a single instance can be created per project. And therefore only a single physical display can be controlled.
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   sharpMemoryLCD LCD=sharpMemoryLCD();
   ```
@@ -151,13 +154,13 @@ The following methods create a LCD display class instance and initialize it.
   ```
   Initializes the SPI interface including the CS pin as well as the class instance variables. This method has to be called inside the _setup_ function.
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   void setup() {
     LCD.begin();
@@ -178,13 +181,13 @@ The following methods update and refresh the physical LCD display via the SPI in
   ```
   Clears the physical display (but not the display buffer).
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   LCD.clearDisplay();
   ```
@@ -196,13 +199,13 @@ The following methods update and refresh the physical LCD display via the SPI in
   ```
   Updates the physical display by transferring the data of the local display buffer to the display.
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   LCD.update();
   ```
@@ -214,13 +217,13 @@ The following methods update and refresh the physical LCD display via the SPI in
   ```
   Refreshes the physical display by sending a toggle VCOM command. This method should be executed regularly at least once per second if no other physical display updates are performed. The method can be called without performance impact in much shorter intervals, since it skips display updates if they are requested in less than 750ms after the last refresh.
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   LCD.refresh();
   ```
@@ -238,13 +241,13 @@ This group of methods provide basic drawing functionalities. They update the loc
   ```
   Clears the display buffer.
 
- ##### Parameters
+##### Parameters
   --
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   LCD.clear();
   ```
@@ -256,14 +259,14 @@ This group of methods provide basic drawing functionalities. They update the loc
   ```
   Sets a single pixel. Pixels that are outside of the display area are ignored.
 
- ##### Parameters
+##### Parameters
   * x - X coordinate, type: xy_t
   * y - Y coordinate, type: xy_t
 
- ##### Returns
+##### Returns
   --
 
- ##### Example
+##### Example
   ```C++
   LCD.setPixel(48,48);
   ```
@@ -275,16 +278,16 @@ This group of methods provide basic drawing functionalities. They update the loc
   ```
   Draws a line between the coordinates (x0,y0) and (x1,y1). The line endpoints can be situated outside of the display area.
 
- ##### Parameters
+##### Parameters
   * x0 - Start point X coordinate, type: xy_t
   * y0 - Start point Y coordinate, type: xy_t
   * x0 - End point X coordinate, type: xy_t
   * y0 - End point Y coordinate, type: xy_t
 
- ##### Returns
+##### Returns
   --
   
- ##### Example
+##### Example
   ```C++
   x=LCD.line(10,20,50,80);
   ```
@@ -296,16 +299,16 @@ This group of methods provide basic drawing functionalities. They update the loc
   ```
   Draws a rectangle specified by 2 opposite corners (x0,y0) and (x1,y1). 
 
- ##### Parameters
+##### Parameters
   * x0 - First corner X coordinate, type: xy_t
   * y0 - First corner Y coordinate, type: xy_t
   * x0 - Opposite corner X coordinate, type: xy_t
   * y0 - Opposite corner Y coordinate, type: xy_t
 
- ##### Returns
+##### Returns
   --
   
- ##### Example
+##### Example
   ```C++
   LCD.rect(3,3,92,92);
   ```
@@ -317,15 +320,15 @@ This group of methods provide basic drawing functionalities. They update the loc
   ```
   Draws a circle with the center (x,y) and the radius _radius_. A portion of the circle may be located outside of the display area.
 
- ##### Parameters
+##### Parameters
   * x - Circle center X coordinate, type: xy_t
   * y - Circle center Y coordinate, type: xy_t
   * radius - Circle radius, type: xy_t
 
- ##### Returns
+##### Returns
   --
   
- ##### Example
+##### Example
   ```C++
   x=LCD.circle(48,48,47);
   ```
@@ -361,7 +364,7 @@ The write methods support various options. Multiple options can be added togethe
   ```
   Writes a single character. The X position to write a next character is returned.
 
- ##### Parameters
+##### Parameters
   * x   - X coordinate, type: xy_t
   * y   - Y coordinate, type: xy_t
   * Chr - Character to write, type: xy_t
@@ -369,10 +372,10 @@ The write methods support various options. Multiple options can be added togethe
     - SMLCD_WRITE_TIGHT (bit 0): Writes tightly, removes unnecessary space.
     - SMLCD_WRITE_CHECKONLY (bit 1): Calculates just the space and returns the X position for the next character, without updating the display buffer.
 
- ##### Returns
+##### Returns
   X position for the next character. Type: xy_t
   
- ##### Example
+##### Example
   ```C++
   x=LCD.writeChrS(x,y,'!',SMLCD_WRITE_TIGHT);
   ```
@@ -389,7 +392,7 @@ The write methods support various options. Multiple options can be added togethe
   ```
   Writes a character string or an integer. The X position to write a next character is returned.
 
- ##### Parameters
+##### Parameters
   * x    - X coordinate, type: xy_t
   * y    - Y coordinate, type: xy_t
   * Text - Character string to write, type: (char *)
@@ -399,10 +402,10 @@ The write methods support various options. Multiple options can be added togethe
     - SMLCD_WRITE_CHECKONLY (bit 1): Calculates just the space and returns the updated X position for the next character, without updating the display buffer.
     - SMLCD_WRITE_DECIMALPOS(Pos) (bit 4<<Pos): Option only available for the integer write methods. Adds an integer separator at the specified location.
 
- ##### Returns
+##### Returns
   X position for the next character. Type: xy_t
   
- ##### Example
+##### Example
   ```C++
   x=LCD.writeS(x,y,"Hello World",SMLCD_WRITE_TIGHT);
   x=LCD.writeS(x,y,MyValue,SMLCD_WRITE_TIGHT|SMLCD_WRITE_DECIMALPOS(2));
@@ -416,7 +419,7 @@ The write methods support various options. Multiple options can be added togethe
   ```
   Writes a character string or an integer using the biggest possible font size to fit into a field that is limited by the X coordinates x0 and x1. The X position to write a next character is returned.
 
- ##### Parameters
+##### Parameters
   * x0   - Starting X coordinate, type: xy_t
   * y    - Y coordinate, type: xy_t
   * x1   - End X coordinate, type: xy_t
@@ -427,17 +430,17 @@ The write methods support various options. Multiple options can be added togethe
     - SMLCD_WRITE_CHECKONLY (bit 1): Calculates just the space and returns the updated X position, without updating the display buffer.
     - SMLCD_WRITE_DECIMALPOS(Pos) (bit 4<<Pos): Only the integer write method. Adds an integer separator at the specified location.
 
- ##### Returns
+##### Returns
   X position for the next character. Type: xy_t
   
- ##### Example
+##### Example
   ```C++
   x=LCD.writeFit(x,y,"Hello World",SMLCD_WRITE_TIGHT|SMLCD_WRITE_CENTERY);
   x=LCD.writeFit(x,y,MyValue,SMLCD_WRITE_TIGHT|SMLCD_WRITE_CENTERY);
  ```
 
 -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-## API - Auxiliary functions  
+## API - Auxiliary functions
 
 
 ### Function: **int2Str**
@@ -446,11 +449,11 @@ The write methods support various options. Multiple options can be added togethe
   ```
   Converts a integer into a string. Positive and negative values are supported. If DecimalPos is bigger than 0 a decimal separator (',') is added at the specified position. To reduce stack usage this function has not been defined as part of the LCD display class.
 
- ##### Parameters
+##### Parameters
   * Val        - Integer value, type: int
   * DecimalPos - Optional decimation separator position, type: byte
 
- ##### Returns
+##### Returns
   Pointer to converted character string. Type: (char *)
 
 
