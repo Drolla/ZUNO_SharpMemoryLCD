@@ -283,8 +283,8 @@ This group of methods provide basic drawing functionalities. They update the loc
 ##### Parameters
   * x0 - Start point X coordinate, type: xy_t
   * y0 - Start point Y coordinate, type: xy_t
-  * x0 - End point X coordinate, type: xy_t
-  * y0 - End point Y coordinate, type: xy_t
+  * x1 - End point X coordinate, type: xy_t
+  * y1 - End point Y coordinate, type: xy_t
 
 ##### Returns
   --
@@ -304,8 +304,8 @@ This group of methods provide basic drawing functionalities. They update the loc
 ##### Parameters
   * x0 - First corner X coordinate, type: xy_t
   * y0 - First corner Y coordinate, type: xy_t
-  * x0 - Opposite corner X coordinate, type: xy_t
-  * y0 - Opposite corner Y coordinate, type: xy_t
+  * x1 - Opposite corner X coordinate, type: xy_t
+  * y1 - Opposite corner Y coordinate, type: xy_t
 
 ##### Returns
   --
